@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static tailwind_tags %} 
+
+{% block scripts %}
+<script>
+    const controlCarousel = () => {
+        // Base template's window.onload event listener code
+        const previousButton = document.getElementById("previous");
+        const nextButton = document.getElementById("next");
+        const carousel = document.getElementById("carousel");
+        nextButton.addEventListener("click", () => {
+            const itemWidth = carousel.getElementsByTagName("div")[0].clientWidth;
+            carousel.scrollLeft = carousel.scrollLeft + itemWidth;
+        })
+        previousButton.addEventListener("click", () => {
+            const itemWidth = carousel.getElementsByTagName("div")[0].clientWidth;
+            carousel.scrollLeft = carousel.scrollLeft - itemWidth;
+        })
+    }
+    addLoadEvent(controlCarousel);
+  </script>
+
+{% endblock %}
+
+{% block hero %}
+<div 
+    style="background-image: url({% static 'images/hero.jpg' %})"
+    class="bg-cover bg-center bg-fixed flex flex-col items-center justify-center min-h-96
+    h-[calc(100vh-300px)]">
+    <div class="bg-white/30 py-2 px-4 rounded-xl text-center backdrop:blur-md">
+        <div class="relative">
+            <img src="{% static 'images/logo.png'%}" width="175">
+            <div class="flex items-center justify-center mt-[-70px] mb-5">
+                <div class="flex bg-pink-500 w-14 h-14 rounded-full items-center justify-center gap-0.5">
+                    <div class="animate-wavey rounded-full w-0.5 h-1.5 bg-pink-300"></div>
+                    <div class="animation-delay-100 rounded-full w-0.5 h-4 bg-pink-200"></div>
+                    <div class="animation-delay-200 animate-wavey rounded-full w-0.5 h-6 bg-pink-100"></div>
+                    <div class="animation-delay-[150ms]  animate-wavey rounded-full w-0.5 h-4 bg-pink-50"></div>
+                    <div class="animate-wavey rounded-full w-0.5 h-2 bg-white"></div>
+                    <div class="animate-wavey rounded-full w-0.5 h-4 bg-white"></div>
+                    <div class="animation-delay-300 animate-wavey rounded-full w-0.5 h-2 bg-pink-50"></div>
+                    <div class="animation-delay-300 animate-wavey rounded-full w-0.5 h-4 bg-pink-100"></div>
+                    <div class="animation-delay-[75ms] animate-wavey rounded-full w-0.5 h-3 bg-pink-200"></div>
+                    <div class="animation-delay-100 animate-wavey rounded-full w-0.5 h-1.5 bg-pink-300"></div>
+                </div>
+            </div>
+        </div>
+        <div class="text-5xl font-bold">
+            tw:<span class="text-sky-900">mf</span>
+        </div>
+    </div>
+    <div class="font-bold mt-3 text-zinc-50">Keep me updated with news and promotions</div>
+    <form class="mt-3 flex gap-2">
+        <input type="email" placeholder="Email" 
+            class="rounded-md border border-white/40 bg-white/20 backdrop:blur-md
+            p-2 font-bold text-sky-900 placeholder-zinc-500 caret-pink-600
+            focus:outline outline-pink-600">
+        </input>
+        <button type="submit"
+            class="cursor-pointer rounded-sm bg-pink-600 py-2 px-4 font-bold transition-colors
+            hover:bg-sky-900 hover:shadow-black/20 hover:shadow-lg">
+            Subscribe
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block content%}
+<div class="max-w-screen-lg mx-auto mt-20 text-zinc-900 dark:text-zinc-200">
+    <h2>
+        <span
+          class="bg-gradient-to-r from-violet-500 to-pink-600 bg-clip-text text-transparent"
+          >Headliners</span
+        >
+    </h2>
+    <p>
+        Experience the sonic delights of these made up artists across 7 sensational days that
+        music fans are calling "one of the few great gigs that will happen this year".
+    </p>
+    <div class="flex">
+        <div id="previous" class="flex justify-center items-center md:p-2 relative -top-8">
+            <i class="fas fa-angle-left text-5xl"></i>
+        </div>
+        <div id="carousel" class="scroll-smooth flex-1 mt-4 flex w-full gap-4 pb-5 snap-x overflow-x-auto">
+            {% include 'index/includes/carousel-img.html' with src='images/band1.jpg' title='Corduroy Gary' date='1st July 9pm - Main Stage' %}
+            {% include 'index/includes/carousel-img.html' with src='images/band2.jpg' title='Corduroy Gary' date='1st July 9pm - Main Stage' %}
+            {% include 'index/includes/carousel-img.html' with src='images/band3.jpg' title='Corduroy Gary' date='1st July 9pm - Main Stage' %}
+            {% include 'index/includes/carousel-img.html' with src='images/band4.jpg' title='Corduroy Gary' date='1st July 9pm - Main Stage' %}
+            {% include 'index/includes/carousel-img.html' with src='images/band5.jpg' title='Corduroy Gary' date='1st July 9pm - Main Stage' %}
+            {% include 'index/includes/carousel-img.html' with src='images/band6.jpg' title='Corduroy Gary' date='1st July 9pm - Main Stage' %}
+            {% include 'index/includes/carousel-img.html' with src='images/band7.jpg' title='Corduroy Gary' date='1st July 9pm - Main Stage' %}
+        </div>
+        <div id="next" class="flex justify-center items-center md:p-2 relative -top-8">
+            <i class="fas fa-angle-right text-5xl"></i>
+        </div>
+    </div>
+    <div id="Lineup-sections">
+        <h2 class="mt-20">Lineup</h2>
+        <p>Make sure you don't miss you favorite artist by following this event timeline and stage guide.</p>
+        <div class="mt-5 bg-zinc-700 py-4 px-2 text-zinc-200 relative rounded-lg p-2">
+            <div class="absolute top-0 left-1/2 w-4 ml-[-8px] h-full rounded-full bg-gradient-to-b from-sky-600 via-green-400 to-teal-600">
+                <div class="sticky top-1/2">
+                    <div class="relative h-4 w-4"></div>
+                    <div class="absolute h-4 w-4 animate-ping rounded-full bg-rose-700 opacity-75"></div>
+                    <div class="relative h-4 w-4 rounded-full bg-pink-600"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-9">
+                <div class="p-2 bg-zinc-900 rounded-lg my-4 text-center">1st July</div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div></div>
+                <div class="p-2 bg-zinc-900 rounded-lg my-4 text-center">2nd July</div>
+                <div></div>
+                <div class="text-left">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div class="text-left">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div class="p-2 bg-zinc-900 rounded-lg my-4 text-center">1st July</div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div></div>
+                <div class="p-2 bg-zinc-900 rounded-lg my-4 text-center">2nd July</div>
+                <div></div>
+                <div class="text-left">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div class="text-left">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div class="p-2 bg-zinc-900 rounded-lg my-4 text-center">1st July</div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div></div>
+                <div class="p-2 bg-zinc-900 rounded-lg my-4 text-center">2nd July</div>
+                <div></div>
+                <div class="text-left">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div class="text-left">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div class="p-2 bg-zinc-900 rounded-lg my-4 text-center">1st July</div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div class="text-right">
+                    <div class="font-bold">Jacki Chaston</div>
+                    <div>6pm - Sage Stage</div>
+                </div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div id="tickets-section">
+        <h2 class="mt-20">Tickets</h2>
+        <table class="mt-5 table w-full border border-zinc-500 border-collapse">
+            <thead class="text-lg font-bold">
+                <td class="border border-zinc-500 p-3">Tickets</td>
+                <td class="border border-zinc-500 p-3">Price</td>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-zinc-500 py-2 px-3">One Day Pass</td>
+                    <td class="border border-zinc-500 py-2 px-3">$50</td>
+                </tr>
+                <tr>
+                    <td class="border border-zinc-500 py-2 px-3">Seven Day Pass</td>
+                    <td class="border border-zinc-500 py-2 px-3">$150</td>
+                </tr>
+            </tbody>
+            <caption class="caption-bottom">
+                Hurry, while stocks last!
+            </caption>
+        </table>
+    </div>
+    <section class="rounded-tl-3xl rounded-br-3xl mt-20 flex flex-col items-center justify-center bg-gradient-to-br from-cyan-500 to-pink-600 px-10 py-40">
+        <div>
+            <h3 class="mb-4">Order your tickets now!</h3>
+        </div>
+        <button class="btn btn-pink-600 text-white">Buy Tickets</button>
+    </section>
+    
+</div>
+{% endblock %}
