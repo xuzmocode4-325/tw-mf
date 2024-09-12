@@ -1,0 +1,129 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>{% block page-title %}{% endblock %}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<script src="https://kit.fontawesome.com/09ca7363a2.js" crossorigin="anonymous"></script>
+		<script id="base-onload-script" language="javascript">
+			const addLoadEvent = (func) => {
+				var oldonload = window.onload;
+				if (typeof window.onload != 'function') {
+					window.onload = func;
+				} else {
+					window.onload = () => {
+						if (oldonload) {
+							oldonload();
+						}
+						func();
+					}
+				}
+			}
+
+			const toggleMobileMenu = () => {
+				const mobileMenuIcon = document.getElementById("mobile-burger-button")
+				mobileMenuIcon.addEventListener("click", () => {
+					if(mobileMenuIcon.classList.contains("open")){
+						mobileMenuIcon.classList.remove("open");
+					} else {
+						mobileMenuIcon.classList.add("open");
+					};
+				});
+
+				const ticketMenuItem = document.getElementById("ticket-menu-item")
+				ticketMenuItem.addEventListener("click", () => {
+					if(ticketMenuItem.classList.contains("open")){
+						ticketMenuItem.classList.remove("open");
+					} else {
+						ticketMenuItem.classList.add("open");
+					};
+				});
+
+				const darkModeToggle = document.getElementById("dark-mode-toggle");
+				darkModeToggle.addEventListener("click", () => {
+					if (document.body.classList.contains("dark")) {
+						document.body.classList.remove("dark")
+					} else {
+						document.body.classList.add("dark")
+					}
+				})
+			}
+
+			addLoadEvent(toggleMobileMenu);
+		</script>
+		{% block scripts %}
+		{% endblock %}
+		{% tailwind_css %}
+	</head>
+	<body class="leading-normal tracking-normal bg-zinc-100 dark:bg-zinc-900 pb-40">
+		<main>
+			<header class="text-zinc-100">
+				<button
+					id="dark-mode-toggle" 
+					class="fixed top-24 right-0 inline-block w-12 cursor-pointer rounded-l-lg z-40
+					bg-zinc-900 text-zinc-200 dark:bg-zinc-200 dark:text-zinc-900 p-2 text-3xl">
+					<i class="fa-solid fa-sun dark:hidden"></i>
+					<i class="fa-solid fa-moon hidden dark:inline"></i>
+				</button>
+				<nav class="sticky flex top-0 bg-gradient-to-r from-rose-400 to-pink-600 z-50">
+					{% include 'includes/nav-logo.html' with src='images/logo-inverted.png' %}
+					<div id="mobile-nav" class="my-auto ml-auto block cursor-pointer pr-4 md:hidden">
+						<button id="mobile-burger-button" class="group peer">
+							<div class="relative top-0 h-1 w-8 rounded-full bg-zinc-200 transition-all group-open:top-2 group-open:rotate-45"></div>
+							<div class="mt-1 h-1 w-8 rounded-full bg-zinc-200 opacity-100 transition-all group-open:opacity-0"></div>
+							<div class="relative top-0 mt-1 h-1 w-8 rounded-full bg-zinc-200 transition-all group-open:-top-2 group-open:-rotate-45"></div>
+						  </button>
+						<div class="peer-open:block hidden absolute top-[62px] w-full left-0 bg-gradient-to-r from-rose-400 to-pink-600 ">
+							{% include 'includes/mobile-nav-item.html' with label="Home" %}
+							{% include 'includes/mobile-nav-item.html' with label="Lineup" %}
+							<div id="ticket-menu-item" class="group relative h-full cursor-pointer text-pink-200 hover:text-zinc-200 
+								transition-colors hover:bg-white/10">
+    							<div class="p-4 text-center font-bold">Tickets</div>
+								<div class="hidden group-open:block">
+									<div class="relative text-center p-4 text-pink-200 hover:text-zinc-200 
+										transition-colors hover:bg-white/5">
+										<span>One Day Pass</span>
+									</div>
+									<div class="relative text-center p-4 text-pink-200 hover:text-zinc-200 
+										transition-colors hover:bg-white/5">
+										<span>Weekly Pass</span>
+									</div>
+								</div>
+							</div>
+							{% include 'includes/mobile-nav-item.html' with label="Support" %}
+						</div>
+					</div>
+					<div id="web-nav" class="md:flex hidden flex-1 items-center justify-end">
+						{% include 'includes/nav-item.html' with label="Home" %}
+						{% include 'includes/nav-item.html' with label="Lineup" %}
+						<div class="group
+							relative flex h-full items-center p-4 cursor-pointer text-pink-200 
+							hover:text-zinc-200 hover:bg-white/10 transition-colors ease-in-out">
+							<span> Tickets </spans>
+								<div class="group-hover:block hidden absolute top-full bg-pink-600 
+									right-0 whitespace-nowrap rounded-b-sm text-right">
+									<div class="p-4 font-bold hover:bg-white/5 text-pink-200
+									hover:text-zinc-200 transition-colors ease-in-out cursor-pointer">
+										<span>One Day Pass</span>
+									</div>
+									<div class="p-4 font-bold hover:bg-white/5 text-pink-200
+									hover:text-zinc-200 transition-colors ease-in-out cursor-pointer">
+										<span>Weekly Pass</span>
+									</div>
+								</div>
+						</div>
+						{% include 'includes/nav-item.html' with label="Support" %}
+					</div>
+				</nav>
+				{% block hero %}
+				{% endblock %}
+			</header>
+			<div class="mx-4 md:p-0">
+				{% block content%}
+				{% endblock %}
+			</div>
+		</main>
+	</body>
+</html>
