@@ -677,7 +677,7 @@ h5{
   font-weight: 700;
 }
 
-h1{
+h6{
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 700;
@@ -887,6 +887,10 @@ h1{
   margin-bottom: auto;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .mb-5{
   margin-bottom: 1.25rem;
 }
@@ -925,14 +929,6 @@ h1{
 
 .mt-\[-70px\]{
   margin-top: -70px;
-}
-
-.mb-2{
-  margin-bottom: 0.5rem;
-}
-
-.mb-4{
-  margin-bottom: 1rem;
 }
 
 .block{
@@ -1160,30 +1156,6 @@ h1{
 .rounded-l-lg{
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-}
-
-.rounded-br-full{
-  border-bottom-right-radius: 9999px;
-}
-
-.rounded-tl-full{
-  border-top-left-radius: 9999px;
-}
-
-.rounded-br-lg{
-  border-bottom-right-radius: 0.5rem;
-}
-
-.rounded-tl-lg{
-  border-top-left-radius: 0.5rem;
-}
-
-.rounded-br-2xl{
-  border-bottom-right-radius: 1rem;
-}
-
-.rounded-tl-2xl{
-  border-top-left-radius: 1rem;
 }
 
 .rounded-br-3xl{
